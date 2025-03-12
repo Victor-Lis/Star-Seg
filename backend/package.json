@@ -1,0 +1,32 @@
+{
+  "name": "fastify-postgres-app",
+  "version": "1.0.0",
+  "description": "A Fastify application with PostgreSQL and Drizzle ORM",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "tsx src/app.ts",
+    "build": "tsc",
+    "dev": "tsx watch src/app.ts",
+    "generate": "npx drizzle-kit generate --config src/drizzle.config.ts",
+    "migrate": "npx drizzle-kit migrate --config src/drizzle.config.ts",
+    "push": "npx drizzle-kit push --config src/drizzle.config.ts",
+    "pull": "npx drizzle-kit pull --config src/drizzle.config.ts",
+    "studio": "npx drizzle-kit studio --config src/drizzle.config.ts"
+  },
+  "dependencies": {
+    "@fastify/env": "^5.0.2",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.40.0",
+    "fastify": "^5.2.1",
+    "pg": "^8.11.3",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/pg": "^8.11.0",
+    "drizzle-kit": "^0.30.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "license": "MIT"
+}

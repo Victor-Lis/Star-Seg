@@ -1,0 +1,5 @@
+# Node Modules
+/backend/node_modules
+
+# Drizzle
+/backend/drizzle 
