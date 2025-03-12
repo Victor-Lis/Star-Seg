@@ -4,5 +4,13 @@
 # Drizzle
 /backend/drizzle 
 
-# .env
+# Credenciais e arquivos sensíveis
+.env
+.env.*
+*.pem
+*.key
+*.cert
 /backend/.env
+/backend/.env.*
+.credentials/
+*.secret
