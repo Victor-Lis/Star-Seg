@@ -3,3 +3,6 @@
 
 # Drizzle
 /backend/drizzle 
+
+# .env
+/backend/.env

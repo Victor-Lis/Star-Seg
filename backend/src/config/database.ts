@@ -1,9 +1,11 @@
 import { Client } from 'pg';
-import "dotenv/config";
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { drizzle } from "drizzle-orm/node-postgres";
 
 const client = new Client({
-    connectionString: 'postgres://neondb_owner:npg_1TROXYA4JsyI@ep-rough-queen-acp0r5we-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require',
+    connectionString: process.env.DATABASE_URL,
 });
 
 export const connectToDatabase = async () => {
@@ -27,4 +29,4 @@ export const disconnectFromDatabase = async () => {
 };
 
 export default client;
-export const db = drizzle('postgres://neondb_owner:npg_1TROXYA4JsyI@ep-rough-queen-acp0r5we-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require');
+export const db = drizzle(process.env.DATABASE_URL);
