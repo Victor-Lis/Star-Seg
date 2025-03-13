@@ -1,21 +1,26 @@
-import type { SafeParseReturnType } from "zod";
+import type { SafeParseReturnType, ZodFormattedError } from "zod";
+
+type ValidationError = {
+  field: string;
+  message: string;
+};
 
 type FormatValidationResponse = {
   success: boolean;
-  errors: { field: string; message: string }[];
+  errors: ValidationError[];
   users: null;
 };
 
-export function formatValidationErrors(
-  validation: SafeParseReturnType<any, any>
+export function formatValidationErrors<T, U>(
+  validation: SafeParseReturnType<T, U>
 ): FormatValidationResponse {
   const formattedErrors = Object.entries(
-    validation?.error?.format?.() ?? {}
+    (validation.error?.format?.() ?? {}) as ZodFormattedError<T>
   )
     .filter(([key]) => key !== "_errors")
-    .map(([field, value]: [string, any]) => ({
+    .map(([field, value]) => ({
       field,
-      message: Object.values(value)[0]?.[0] || "Erro desconhecido",
+      message: (value as { _errors?: string[] })._errors?.[0] || "Erro desconhecido",
     }));
 
   return {
