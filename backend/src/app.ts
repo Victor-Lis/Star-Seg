@@ -10,10 +10,17 @@ setRoutes(app);
 
 const start = async () => {
   try {
-    const port: FastifyListenOptions = {
-      port: process.env.PORT || 3000,
+    const port = Number(process.env.PORT) || 3000;
+    const host = process.env.HOST || '0.0.0.0';
+
+    const options: FastifyListenOptions = {
+      port,
+      host,
     };
-    app.listen(port);
+
+    console.log(options)
+
+    await app.listen(options);
     app.log.info("Servidor rodando em http://localhost:3000");
   } catch (err) {
     app.log.error(err);
