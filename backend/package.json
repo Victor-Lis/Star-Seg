@@ -26,6 +26,7 @@
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@types/pg": "^8.11.0",
+    "@types/fastify": "^4.0.0",
     "drizzle-kit": "^0.30.5",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
