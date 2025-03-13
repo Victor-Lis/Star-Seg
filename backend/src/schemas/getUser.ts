@@ -5,3 +5,5 @@ export const getUserSchema = z.object({
 })
 
 export type GetUserInput = z.infer<typeof getUserSchema>
+
+export default getUserSchema
