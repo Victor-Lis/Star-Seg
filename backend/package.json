@@ -1,7 +1,7 @@
 {
-  "name": "fastify-postgres-app",
+  "name": "starseg-backend",
   "version": "1.0.0",
-  "description": "A Fastify application with PostgreSQL and Drizzle ORM",
+  "description": "O backend de uma aplicação de cadastro de usuários!",
   "main": "src/app.ts",
   "scripts": {
     "start": "tsx src/app.ts",
