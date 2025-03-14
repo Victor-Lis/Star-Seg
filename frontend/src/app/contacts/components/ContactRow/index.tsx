@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Trash, Edit } from 'lucide-react'
+import { Trash, Edit, Eye } from "lucide-react";
 
 export default function ContactRow() {
   return (
@@ -18,11 +18,14 @@ export default function ContactRow() {
         </div>
       </section>
       <div className="flex gap-2 max-[500px]:w-full">
+        <Button variant="view" size="icon">
+          <Eye color="#0e0e0e" className="h-3 w-3" />
+        </Button>
         <Button variant="edit" size="icon">
           <Edit color="#0e0e0e" className="h-3 w-3" />
         </Button>
         <Button variant="delete" size="icon">
-        <Trash color="#0e0e0e" className="h-3 w-3" />
+          <Trash color="#0e0e0e" className="h-3 w-3" />
         </Button>
       </div>
     </div>
