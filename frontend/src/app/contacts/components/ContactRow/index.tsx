@@ -47,7 +47,7 @@ export default function ContactRow({ contact, index }: ContactRowProps) {
     <div className="flex items-center justify-between flex-wrap gap-2 max-md:mt-4 overflow-hidden truncate">
       <section className="flex items-center">
         <Avatar className="h-9 w-9">
-          <AvatarImage src={"/avatars/01.png"} alt="Avatar" />
+          <AvatarImage src={getProfileImage()} alt="Avatar" />
           <AvatarFallback>
             {contact.name
               .split(" ")
