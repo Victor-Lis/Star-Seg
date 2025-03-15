@@ -3,6 +3,8 @@ import { pgTable, text, varchar, integer, timestamp, uuid } from "drizzle-orm/pg
 export const usersTable = pgTable("users", {
   id: uuid().defaultRandom().primaryKey(),
 
+  profilePicture: text("profile_picture").default(""),
+
   name: varchar("name", { length: 255 }).notNull(),
   phone: varchar("phone", { length: 13 }).notNull(), 
   email: varchar("email", { length: 255 }).notNull().unique(),

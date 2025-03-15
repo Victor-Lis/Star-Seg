@@ -11,6 +11,7 @@ export const updateUserSchema = z.object({
   neighborhood: z.string().optional(),
   street: z.string().optional(),
   number: z.number().optional(),
+  profilePicture: z.string().optional(),
   complement: z.string().optional(),
 })
 

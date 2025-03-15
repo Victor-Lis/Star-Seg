@@ -1,5 +1,6 @@
 export type PostDataBody = { 
   name: string,
+  profilePicture?: string,
   phone: string,
   email: string,
   cep: string,

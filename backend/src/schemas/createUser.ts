@@ -10,6 +10,7 @@ export const createUserSchema = z.object({
   neighborhood: z.string(),
   street: z.string(),
   number: z.number(),
+  profilePicture: z.string().optional(),
   complement: z.string().optional(),
 })
 

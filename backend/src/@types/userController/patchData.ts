@@ -1,5 +1,6 @@
 export type PatchDataBody = { 
   id: string,
+  profilePicture?: string,
   name?: string,
   phone?: string,
   email?: string,

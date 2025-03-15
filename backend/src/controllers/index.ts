@@ -59,7 +59,6 @@ class UserController {
       "neighborhood",
       "street",
       "number",
-      //   "complement",
     ];
     const keys = Object.keys(request.body ? request.body : {});
     const missingKeys = requirements.filter(
@@ -86,6 +85,7 @@ class UserController {
       street,
       number,
       complement,
+      profilePicture,
     } = request?.body as PostDataBody;
 
     const { user, success, errors } = await userService.createUser({
