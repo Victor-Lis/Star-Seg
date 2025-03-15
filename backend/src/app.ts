@@ -1,11 +1,13 @@
 import fastify, { type FastifyListenOptions } from "fastify";
 
 import { setRoutes } from "./routes/index";
+
+import cors from '@fastify/cors'
 import { connectToDatabase } from "./config/database";
 
 const app = fastify({ logger: true });
 
-app.register(connectToDatabase);
+app.register(cors, connectToDatabase);
 setRoutes(app);
 
 const start = async () => {

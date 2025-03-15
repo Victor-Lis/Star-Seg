@@ -16,6 +16,7 @@
     "backend": "npm run dev:2 & npm run studio"
   },
   "dependencies": {
+    "@fastify/cors": "^11.0.0",
     "@fastify/env": "^5.0.2",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.40.0",
