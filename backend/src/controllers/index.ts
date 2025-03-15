@@ -99,6 +99,7 @@ class UserController {
       street,
       number,
       complement,
+      profilePicture,
     });
 
     if (!success || !user) {
