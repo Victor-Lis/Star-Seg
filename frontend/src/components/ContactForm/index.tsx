@@ -28,6 +28,7 @@ import {
 import { useViaCep } from "@/hooks/useViaCep";
 import { UFSelect } from "../UFSelect";
 import { redirect, useRouter } from "next/navigation";
+import { useFirebaseStorage } from "@/hooks/useFirebaseStorage";
 
 type ContactFormProps = {
   title?: string;
@@ -41,7 +42,7 @@ export default function ContactForm({
   contact,
 }: ContactFormProps) {
   const router = useRouter();
-  
+
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -56,10 +57,12 @@ export default function ContactForm({
       street: contact ? contact.street : "",
       number: contact ? contact.number : 0,
       complement: contact ? contact.complement : "",
+      profilePicture: contact ? contact.profilePicture : null,
     },
   });
 
   const { getAddressByCep } = useViaCep();
+  const { uploadFile } = useFirebaseStorage();
 
   async function onCepBlur(cep: string) {
     if (cep.length === 8) {
@@ -76,36 +79,35 @@ export default function ContactForm({
   async function onSubmit(data: ContactFormData) {
     try {
       setIsLoading(true);
-      if (contact) {
-        const body = JSON.stringify({
-          ...data,
-          id: contact.id,
-        });
-        const response = await fetch(process.env.NEXT_PUBLIC_API, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body,
-        });
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+      let profilePicture = null;
+
+      if (data?.profilePicture) {
+        const file = await uploadFile(data.profilePicture as unknown as File);
+        if (file) {
+          profilePicture = file;
         }
-        router.push("/contacts/");
-      } else {
-        const body = JSON.stringify(data);
-        const response = await fetch(process.env.NEXT_PUBLIC_API, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body,
-        });
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        router.push("/contacts/");
       }
+
+      const body = JSON.stringify({
+        ...data,
+        profilePicture,
+        id: contact?.id,
+      });
+
+      const method = contact ? "PATCH" : "POST";
+      const response = await fetch(process.env.NEXT_PUBLIC_API, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body,
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      router.push("/contacts/");
     } catch (error) {
       console.error(error);
     } finally {
@@ -133,6 +135,30 @@ export default function ContactForm({
                     <FormLabel>Nome</FormLabel>
                     <FormControl>
                       <Input placeholder="Nome completo" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="profilePicture"
+                render={({ field: { onChange, value, ...field } }) => (
+                  <FormItem>
+                    <FormLabel>Foto de Perfil</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            onChange(file);
+                          }
+                        }}
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

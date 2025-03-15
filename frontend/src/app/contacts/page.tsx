@@ -69,8 +69,8 @@ export default function Contacts() {
               ) : !contacts || contacts.length === 0 ? (
                 <p>Não há contatos cadastrados</p>
               ) : (
-                contacts?.map((contact) => (
-                  <ContactRow key={contact.id} contact={contact} />
+                contacts?.map((contact, index) => (
+                  <ContactRow key={contact.id} contact={contact} index={index}/>
                 ))
               )}
             </div>

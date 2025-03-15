@@ -9,6 +9,7 @@ export type ContactType = {
   neighborhood: string;
   street: string;
   number: number;
-  complement: string;
+  complement?: string;
+  profilePicture?: string;
   createdAt: string;
 }

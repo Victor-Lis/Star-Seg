@@ -8,19 +8,38 @@ import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 
 type ContactRowProps = {
+  index: number;
   contact: ContactType;
 };
 
-export default function ContactRow({ contact }: ContactRowProps) {
+export default function ContactRow({ contact, index }: ContactRowProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
+  function getProfileImage() {
+    return contact.profilePicture
+      ? contact.profilePicture
+      : `/avatars/0${
+          index % 5 === 0
+            ? 5
+            : index % 4 === 0
+            ? 4
+            : index % 3 === 0
+            ? 3
+            : index % 2 === 0
+            ? 2
+            : 1
+        }.png`;
+  }
+
   async function deleteContact() {
     setLoading(true);
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API}/${contact.id}`)
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API}/${contact.id}`
+    );
     if (response.ok) {
-    router.refresh()
-    } 
+      router.refresh();
+    }
     setLoading(false);
   }
 
@@ -28,7 +47,7 @@ export default function ContactRow({ contact }: ContactRowProps) {
     <div className="flex items-center justify-between flex-wrap gap-2 max-md:mt-4 overflow-hidden truncate">
       <section className="flex items-center">
         <Avatar className="h-9 w-9">
-          <AvatarImage src="/avatars/01.png" alt="Avatar" />
+          <AvatarImage src={"/avatars/01.png"} alt="Avatar" />
           <AvatarFallback>
             {contact.name
               .split(" ")
