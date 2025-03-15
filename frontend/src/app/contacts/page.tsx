@@ -56,9 +56,13 @@ export default async function Contacts() {
 
           <CardContent>
             <div className="space-y-4">
-              {contacts?.map((contact, index) => (
-                <ContactRow key={contact.id} contact={contact} />
-              ))}
+              {(!contacts || !contacts.length) ? (
+                <p>Não há contatos cadastrados</p>
+              ) : (
+                contacts?.map((contact, index) => (
+                  <ContactRow key={contact.id} contact={contact} />
+                ))
+              )}
             </div>
           </CardContent>
         </Card>
