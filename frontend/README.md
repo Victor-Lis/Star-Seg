@@ -123,13 +123,12 @@ yarn dev
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## 👤 Autor
+## Autores
 
-**Victor Lis**
-- Github: [@Victor-Lis](https://github.com/Victor-Lis)
-- LinkedIn: [Victor Lis](https://www.linkedin.com/in/victor-lis-bronzo)
-
----
+| <img src="https://github.com/Victor-Lis.png" width="100" style="border-radius:50%"/> | 
+| --- | 
+| Victor Lis | 
+| Desenvolvedor | 
 
 ⭐ Se este projeto te ajudou, considere dar uma estrela!
 
