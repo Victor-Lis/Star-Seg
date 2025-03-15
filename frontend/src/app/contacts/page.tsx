@@ -10,20 +10,33 @@ import { Plus } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContactRow from "./components/ContactRow";
+import GoBackButton from "@/components/GoBackButton";
+import { ContactType } from "@/@types/contact";
 
 export const metadata: Metadata = {
   title: "Contatos",
   description: "Esses são os contatos salvos.",
 };
 
-const MOCK_CONTACTS = Array(8).fill(null);
+export default async function Contacts() {
+  async function fetchContacts() {
+    const response = await fetch(process.env.NEXT_PUBLIC_API, {
+      next: {
+        revalidate: 60,
+      },
+    });
+    const contacts = await response.json();
+    return contacts.users as ContactType[];
+  }
 
-export default function Contacts() {
+  const contacts = await fetchContacts();
+
   return (
     <main className="min-h-screen p-6 max-[450px]:px-2">
       <div className="mx-auto max-w-5xl">
-        <header className="mb-8">
+        <header className="mb-8 flex justify-between items-center">
           <h1 className="text-2xl font-semibold">Lista de Contatos</h1>
+          <GoBackButton href="/" className="mb-0" />
         </header>
 
         <Card>
@@ -43,8 +56,8 @@ export default function Contacts() {
 
           <CardContent>
             <div className="space-y-4">
-              {MOCK_CONTACTS.map((_, index) => (
-                <ContactRow key={index} />
+              {contacts?.map((contact, index) => (
+                <ContactRow key={`${index}-${contact.id}`} contact={contact} />
               ))}
             </div>
           </CardContent>

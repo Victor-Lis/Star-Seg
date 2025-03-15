@@ -1,4 +1,4 @@
-export type UserType = {
+export type ContactType = {
   id: string;
   name: string;
   phone: string;
@@ -11,5 +11,4 @@ export type UserType = {
   number: number;
   complement: string;
   createdAt: string;
-  updatedAt: string;
 }

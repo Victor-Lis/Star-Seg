@@ -11,6 +11,8 @@ const buttonVariants = cva(
       variant: {
         default:
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/75",
+        submit: 
+          "bg-blue-400 text-white shadow-xs hover:bg-blue-400/85 hover:scale-95", 
         view: "border border-green-400 text-white shadow-xs hover:scale-90 focus-visible:ring-green-400/20 dark:focus-visible:ring-green-400/40 dark:border-green-400/60",
         edit: "border border-blue-400 text-white shadow-xs hover:scale-90 focus-visible:ring-blue-400/20 dark:focus-visible:ring-blue-400/40 dark:border-blue-400/60",
         delete:
