@@ -41,7 +41,7 @@ function ContactsUpdate() {
   return (
     <div className="w-full min-h-svh p-4 flex flex-col justify-center items-center">
       <GoBackButton />
-      {contact && <ContactForm title="Atualizar Contato" description="Atualize um contato da sua lista." contact={contact}/>}
+      {contact ? <ContactForm title="Atualizar Contato" description="Atualize um contato da sua lista." contact={contact}/> : <p>Carregando...</p>}
     </div>
   );
 }

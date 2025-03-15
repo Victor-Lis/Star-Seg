@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/card";
 import { useViaCep } from "@/hooks/useViaCep";
 import { UFSelect } from "../UFSelect";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 type ContactFormProps = {
   title?: string;
@@ -40,6 +40,8 @@ export default function ContactForm({
   description,
   contact,
 }: ContactFormProps) {
+  const router = useRouter();
+  
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -89,12 +91,9 @@ export default function ContactForm({
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const contactReponse = await response.json();
-        console.log(contactReponse);
-        redirect("/contacts/");
+        router.push("/contacts/");
       } else {
         const body = JSON.stringify(data);
-        console.log(body);
         const response = await fetch(process.env.NEXT_PUBLIC_API, {
           method: "POST",
           headers: {
@@ -102,13 +101,10 @@ export default function ContactForm({
           },
           body,
         });
-        console.log(response)
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        const contact = await response.json();
-        console.log(contact);
-        redirect("/contacts/");
+        router.push("/contacts/");
       }
     } catch (error) {
       console.error(error);
@@ -267,7 +263,9 @@ export default function ContactForm({
                         <Input
                           type="number"
                           {...field}
-                          onChange={(e) => field.onChange(Number(e.target.value))}
+                          onChange={(e) =>
+                            field.onChange(Number(e.target.value))
+                          }
                         />
                       </FormControl>
                       <FormMessage />
