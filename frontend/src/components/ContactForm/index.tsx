@@ -80,6 +80,7 @@ export default function ContactForm({
     try {
       setIsLoading(true);
       let profilePicture = null;
+      console.log(data?.profilePicture)
 
       if (data?.profilePicture) {
         const file = await uploadFile(data.profilePicture as unknown as File);
@@ -93,6 +94,8 @@ export default function ContactForm({
         profilePicture,
         id: contact?.id,
       });
+
+      console.log(body)
 
       const method = contact ? "PATCH" : "POST";
       const response = await fetch(process.env.NEXT_PUBLIC_API, {

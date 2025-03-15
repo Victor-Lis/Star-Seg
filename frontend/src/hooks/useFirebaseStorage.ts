@@ -6,10 +6,11 @@ export function useFirebaseStorage() {
     const randomName = Math.random().toString(36).substring(7);
     try {
       const storage = getStorage(app);
-      console.log(storage)
       const storageRef = ref(storage, `pictures/${randomName}-${file.name}`);
-      await uploadBytes(storageRef, file);
+      const response = await uploadBytes(storageRef, file);
+      console.log(response)
       const url = await getDownloadURL(storageRef)
+      console.log(url)
       return url;
     } catch (error) {
       console.error("Erro ao fazer upload do arquivo:", error);
