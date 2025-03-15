@@ -1,8 +1,12 @@
 # Node Modules
+/frontend/node_modules
 /backend/node_modules
 
 # Drizzle
 /backend/drizzle 
+
+# next
+/frontend/.next
 
 # Credenciais e arquivos sensíveis
 .env
@@ -12,5 +16,6 @@
 *.cert
 /backend/.env
 /backend/.env.*
+/backend/dist
 .credentials/
 *.secret
