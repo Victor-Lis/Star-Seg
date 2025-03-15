@@ -79,7 +79,7 @@ npm install
 Crie um arquivo `.env` na raiz do projeto:
 ```env
 DATABASE_URL=sua_url_do_postgres
-PORT=3001
+PORT=3000
 HOST=0.0.0.0
 ```
 
@@ -114,16 +114,17 @@ Para iniciar o ambiente de desenvolvimento:
 npm run dev
 ```
 
-O servidor iniciará em `http://localhost:3001`
-
-## Contribuição
-
-1. Faça um Fork do projeto
-2. Crie sua Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a Branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+O servidor iniciará em `http://localhost:3000`
 
 ## Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## Autores
+
+| <img src="https://github.com/Victor-Lis.png" width="100" style="border-radius:50%"/> | 
+| --- | 
+| Victor Lis | 
+| Desenvolvedor | 
+
+⭐ Se este projeto te ajudou, considere dar uma estrela!
