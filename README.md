@@ -100,6 +100,8 @@ PORT=3333
 npm run push
 ```
 
+<br>
+
 ## 🚀 Rodando o Projeto
 
 ### Frontend
