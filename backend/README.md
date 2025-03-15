@@ -1,59 +1,129 @@
-# Fastify PostgreSQL App
+# Star Seg API
 
-Este projeto é uma aplicação web construída com Fastify, TypeScript e PostgreSQL, utilizando o Drizzle ORM para gerenciar a interação com o banco de dados. Abaixo estão as principais características e estrutura do projeto.
+API REST desenvolvida com Fastify e TypeScript para gerenciamento de usuários, utilizando PostgreSQL como banco de dados e Drizzle ORM para manipulação dos dados.
+
+## Tecnologias
+
+- Fastify (Framework Web)
+- TypeScript
+- PostgreSQL (Banco de Dados)
+- Drizzle ORM
+- Zod (Validação de Schemas)
 
 ## Estrutura do Projeto
 
 ```
-fastify-postgres-app
-├── src
-│   ├── app.ts               # Ponto de entrada da aplicação
-│   ├── config
-│   │   └── database.ts      # Configuração da conexão com o PostgreSQL
-│   ├── controllers
-│   │   └── index.ts         # Controladores para lidar com requisições
-│   ├── models
-│   │   └── index.ts         # Modelos de dados para o Drizzle ORM
-│   ├── routes
-│   │   └── index.ts         # Configuração das rotas da aplicação
-│   ├── schemas
-│   │   └── index.ts         # Esquemas de validação para requisições
-│   └── services
-│       └── index.ts         # Serviços de lógica de negócios
-├── drizzle
-│   ├── migrations            # Arquivos de migração do banco de dados
-│   └── schema.ts            # Definição do esquema do banco de dados
-├── drizzle.config.ts        # Configuração do Drizzle ORM
-├── package.json              # Configuração do npm
-├── tsconfig.json            # Configuração do TypeScript
-└── README.md                # Documentação do projeto
+src/
+├── @types/                  # Definições de tipos TypeScript
+│   └── userController/      # Tipos para o controller de usuários
+├── config/
+│   └── database.ts         # Configuração da conexão com PostgreSQL
+├── controllers/
+│   └── index.ts           # Controllers para gerenciamento de requisições
+├── models/
+│   └── index.ts           # Modelos e schemas do Drizzle ORM
+├── routes/
+│   └── index.ts           # Definição das rotas da API
+├── schemas/
+│   ├── createUser.ts      # Schema de validação para criação
+│   ├── deleteUser.ts      # Schema de validação para deleção
+│   ├── getUser.ts         # Schema de validação para busca
+│   └── updateUser.ts      # Schema de validação para atualização
+├── services/
+│   └── index.ts           # Regras de negócio e lógica da aplicação
+└── app.ts                 # Entrada da aplicação
+```
+
+## Funcionalidades
+
+### Usuários
+- **GET /** - Lista todos os usuários
+- **GET /:id** - Busca usuário por ID
+- **POST /** - Cria novo usuário
+- **PATCH /** - Atualiza usuário existente
+- **DELETE /** - Remove usuário
+
+### Modelo de Usuário
+```typescript
+{
+  id: uuid,                    // ID único (gerado automaticamente)
+  name: string,               // Nome do usuário
+  phone: string,              // Telefone (13 caracteres)
+  email: string,              // Email (único)
+  profilePicture?: string,    // Foto de perfil (opcional)
+  cep: string,               // CEP (8 caracteres)
+  state: string,             // Estado (2 caracteres)
+  city: string,              // Cidade
+  neighborhood: string,       // Bairro
+  street: string,            // Rua
+  number: number,            // Número
+  complement?: string,       // Complemento (opcional)
+  createdAt: timestamp      // Data de criação (automático)
+}
 ```
 
 ## Instalação
 
 1. Clone o repositório:
-   ```bash
-   git clone <URL_DO_REPOSITORIO>
-   cd fastify-postgres-app
-   ```
+```bash
+git clone https://github.com/seu-usuario/star-seg-backend.git
+cd star-seg-backend
+```
 
 2. Instale as dependências:
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-## Uso
+3. Configure as variáveis de ambiente:
+Crie um arquivo `.env` na raiz do projeto:
+```env
+DATABASE_URL=sua_url_do_postgres
+PORT=3001
+HOST=0.0.0.0
+```
 
-Para iniciar a aplicação, execute o seguinte comando:
+4. Execute as migrações:
+```bash
+npm run migrate
+```
+
+## Scripts Disponíveis
+
+- `npm run dev` - Inicia o servidor em modo desenvolvimento
+- `npm run build` - Compila o projeto
+- `npm start` - Inicia o servidor em produção
+- `npm run generate` - Gera migrações do Drizzle
+- `npm run migrate` - Executa migrações pendentes
+- `npm run studio` - Abre interface do Drizzle Studio
+
+## Validações
+
+Utilizamos Zod para validar os dados de entrada:
+- Telefone deve ter 13 caracteres
+- Email deve ser válido e único
+- CEP deve ter 8 caracteres
+- Estado deve ter 2 caracteres
+- Campos obrigatórios não podem estar vazios
+
+## Desenvolvimento
+
+Para iniciar o ambiente de desenvolvimento:
 
 ```bash
-npm run start
+npm run dev
 ```
+
+O servidor iniciará em `http://localhost:3001`
 
 ## Contribuição
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
+1. Faça um Fork do projeto
+2. Crie sua Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a Branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
 ## Licença
 
-Este projeto está licenciado sob a MIT License. Veja o arquivo LICENSE para mais detalhes.
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
