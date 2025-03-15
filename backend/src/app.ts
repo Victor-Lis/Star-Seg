@@ -7,7 +7,13 @@ import { connectToDatabase } from "./config/database";
 
 const app = fastify({ logger: true });
 
-app.register(cors, connectToDatabase);
+app.register(cors, {
+  origin: ['https://star-seg.vercel.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  // credentials: true
+});
+
+app.register(connectToDatabase)
 setRoutes(app);
 
 const start = async () => {
