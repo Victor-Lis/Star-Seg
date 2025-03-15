@@ -35,7 +35,10 @@ export default function ContactRow({ contact, index }: ContactRowProps) {
   async function deleteContact() {
     setLoading(true);
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API}/${contact.id}`
+      `${process.env.NEXT_PUBLIC_API}/${contact.id}`,
+      {
+        method: "DELETE",
+      }
     );
     if (response.ok) {
       router.refresh();
