@@ -55,7 +55,7 @@ export default async function Contacts() {
           </CardHeader>
 
           <CardContent>
-            {/* <div className="space-y-4">
+            <div className="space-y-4">
               {(!contacts || !contacts.length) ? (
                 <p>Não há contatos cadastrados</p>
               ) : (
@@ -63,7 +63,7 @@ export default async function Contacts() {
                   <ContactRow key={contact.id} contact={contact} />
                 ))
               )}
-            </div> */}
+            </div>
           </CardContent>
         </Card>
       </div>
