@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContactRow from "./components/ContactRow";
 import GoBackButton from "@/components/GoBackButton";
-import { ContactType } from "@/@types/contact";
+import type { ContactType } from "@/@types/contact";
 
 export const metadata: Metadata = {
   title: "Contatos",
@@ -57,7 +57,7 @@ export default async function Contacts() {
           <CardContent>
             <div className="space-y-4">
               {contacts?.map((contact, index) => (
-                <ContactRow key={`${index}-${contact.id}`} contact={contact} />
+                <ContactRow key={contact.id} contact={contact} />
               ))}
             </div>
           </CardContent>
